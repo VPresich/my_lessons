@@ -1,13 +1,8 @@
 import { NavLink, Routes, Route } from 'react-router-dom';
 import { useState } from 'react';
-import { BookPhone } from '../components/bookphone/BookPhone';
-import { CafeFeedback } from '../components/cafe-feedback/CafeFeedback';
-import { ProfileSection } from '../components/profile-section/PofileSection';
-import { Controls } from '../components/controls/Controls';
-import { LoginForm } from '../components/login-form/LoginForm';
-import { FormikForm } from '../components/formik/FormikFrom';
-import { HttpComponent } from '../components/http-query/HttpComponent';
-import { HttpImages } from '../components/gallery/HttpImages';
+import { Lesson01 } from '../components/Lesson-01/Lesson-01';
+import { Lesson02 } from '../components/Lesson-02/Lesson-02';
+import { Lesson03 } from '../components/Lesson-03/Lesson-03';
 
 import styles from './MenuApp.module.css';
 import clsx from 'clsx';
@@ -33,74 +28,29 @@ export const MenuApp = () => {
           to="/"
           onClick={() => handleNavLinkClick('/')}
         >
-          Profile
+          Lesson01
         </NavLink>
 
         <NavLink
-          className={buildLinkClassName('/cafefeedback')}
-          to="/cafefeedback"
-          onClick={() => handleNavLinkClick('/cafefeedback')}
+          className={buildLinkClassName('/lesson02')}
+          to="/lesson02"
+          onClick={() => handleNavLinkClick('/lesson02')}
         >
-          Feedback
+          Lesson02
         </NavLink>
 
         <NavLink
-          className={buildLinkClassName('/bookphone')}
-          to="/bookphone"
-          onClick={() => handleNavLinkClick('/bookphone')}
+          className={buildLinkClassName('/lesson03')}
+          to="/lesson03"
+          onClick={() => handleNavLinkClick('/lesson03')}
         >
-          Phone book
-        </NavLink>
-
-        <NavLink
-          className={buildLinkClassName('/controls')}
-          to="/controls"
-          onClick={() => handleNavLinkClick('/controls')}
-        >
-          Controls
-        </NavLink>
-
-        <NavLink
-          className={buildLinkClassName('/loginform')}
-          to="/loginform"
-          onClick={() => handleNavLinkClick('/loginform')}
-        >
-          LoginForm
-        </NavLink>
-
-        <NavLink
-          className={buildLinkClassName('/formikform')}
-          to="/formikform"
-          onClick={() => handleNavLinkClick('/formikform')}
-        >
-          Formikform
-        </NavLink>
-
-        <NavLink
-          className={buildLinkClassName('/httpcomponent')}
-          to="/httpcomponent"
-          onClick={() => handleNavLinkClick('/httpcomponent')}
-        >
-          HttpComponent
-        </NavLink>
-
-        <NavLink
-          className={buildLinkClassName('/httpImages')}
-          to="/httpImages"
-          onClick={() => handleNavLinkClick('/httpImages')}
-        >
-          PhotosGallery
+          Lesson03
         </NavLink>
       </nav>
       <Routes>
-        <Route path="/" element={<ProfileSection />} />
-        <Route path="/cafefeedback" element={<CafeFeedback />} />
-        <Route path="/bookphone" element={<BookPhone />} />
-        <Route path="/controls" element={<Controls />} />
-        <Route path="/loginForm" element={<LoginForm />} />
-        <Route path="/formikform" element={<FormikForm />} />
-        <Route path="/httpcomponent" element={<HttpComponent />} />
-        <Route path="/httpImages" element={<HttpImages />} />
+        <Route path="/" element={<Lesson01 />} />
+        <Route path="/lesson02" element={<Lesson02 />} />
+        <Route path="/lesson03" element={<Lesson03 />} />
       </Routes>
     </div>
   );

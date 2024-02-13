@@ -1,0 +1,14 @@
+.customBtn {
+  padding: 4px 16px;
+  color: teal;
+  font-size: 14px;
+  font-weight: 700;
+  border-radius: 4px;
+  background-color: transparent;
+  border: 1px solid teal;
+  cursor: pointer;
+}
+
+.customBtn:disabled {
+  cursor: not-allowed;
+}
