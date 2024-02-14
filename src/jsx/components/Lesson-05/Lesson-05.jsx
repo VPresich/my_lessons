@@ -24,7 +24,7 @@ export const Lesson05 = () => {
 
   const filteredPosts = useMemo(() => {
     return sortedPosts.filter(post =>
-      post.description.toLowerCase().includes(filter.query.toLowerCase())
+      post.body.toLowerCase().includes(filter.query.toLowerCase())
     );
   }, [filter.query, sortedPosts]);
 

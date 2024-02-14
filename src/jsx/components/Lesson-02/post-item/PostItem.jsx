@@ -1,10 +1,7 @@
 import styles from './PostItem.module.css';
 import { MyButton } from '../../UI/button/MyButton';
 
-export const PostItem = ({
-  post: { id, title, description },
-  onDeletePost,
-}) => {
+export const PostItem = ({ post: { id, title, body }, onDeletePost }) => {
   return (
     <div>
       <div className={styles.post}>
@@ -12,7 +9,7 @@ export const PostItem = ({
           <strong>
             {id}. {title}
           </strong>
-          <div className={styles.description}>{description}</div>
+          <div className={styles.body}>{body}</div>
         </div>
         <MyButton
           onClick={() => {

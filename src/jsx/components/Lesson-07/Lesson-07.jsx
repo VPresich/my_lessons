@@ -7,14 +7,17 @@ import { MyModal } from '../UI/modal/MyModal';
 import { MyButton } from '../UI/button/MyButton';
 import { usePosts } from '../../hooks/usePosts';
 
-import styles from './Lesson-06.module.css';
+import axios from 'axios';
+import { BASE_URL_POST } from './constants';
 
-export const Lesson06 = () => {
-  const [posts, setPosts] = useState(postsList);
+import styles from './Lesson-07.module.css';
+
+export const Lesson07 = () => {
+  const [posts, setPosts] = useState([]);
   const [filter, setFilter] = useState({ sort: '', query: '' });
   const [modal, setModal] = useState(false);
 
-  const filteredPosts = usePosts(posts, filter.sort, filter.query); //customhook
+  const filteredPosts = usePosts(posts, filter.sort, filter.query);
 
   const handleDeletePost = id => {
     setPosts(prevPosts => prevPosts.filter(post => post.id !== id));
@@ -25,9 +28,24 @@ export const Lesson06 = () => {
     setModal(false);
   };
 
+  async function fetchPosts() {
+    console.log('FETCH');
+    const response = await axios(BASE_URL_POST);
+    if (response) {
+      setPosts(response.data);
+    }
+  }
+
   return (
     <div className={styles.section}>
       <MyButton onClick={() => setModal(true)}>Open Modal</MyButton>
+      <MyButton
+        onClick={() => {
+          fetchPosts();
+        }}
+      >
+        Get posts
+      </MyButton>
       <MyModal visible={modal} setVisible={setModal}>
         <PostForm onSubmit={handleAddPost}></PostForm>
       </MyModal>

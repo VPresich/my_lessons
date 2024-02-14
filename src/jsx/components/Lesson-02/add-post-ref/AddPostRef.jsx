@@ -23,7 +23,7 @@ export const AddPostRef = () => {
     const newPost = {
       id: posts.length + 1,
       title,
-      description: descrInputRef.current.value,
+      body: descrInputRef.current.value,
     };
     setPosts([...posts, newPost]);
     setTitle('');
@@ -33,7 +33,7 @@ export const AddPostRef = () => {
     setPosts(prevPosts => prevPosts.filter(post => post.id !== id));
   };
 
-  // const isAddButtonDisabled = !title || !description;
+  // const isAddButtonDisabled = !title || !body;
 
   return (
     <div className={styles.section}>
@@ -44,11 +44,7 @@ export const AddPostRef = () => {
           value={title}
           onChange={handleTitleChange}
         />
-        <MyInput
-          ref={descrInputRef}
-          type="text"
-          placeholder="post description"
-        />
+        <MyInput ref={descrInputRef} type="text" placeholder="post body" />
         <MyButton type="button" disabled={false} onClick={handleAddPost}>
           Add post
         </MyButton>

@@ -22,7 +22,7 @@ export const Lesson03 = () => {
 
   const filteredPosts = useMemo(() => {
     return sortedPosts.filter(post =>
-      post.description.toLowerCase().includes(searchQuery.toLowerCase())
+      post.body.toLowerCase().includes(searchQuery.toLowerCase())
     );
   }, [searchQuery, sortedPosts]);
 
@@ -54,7 +54,7 @@ export const Lesson03 = () => {
         defaultValue={'sort by'}
         options={[
           { value: 'title', name: 'by title' },
-          { value: 'description', name: ' by description' },
+          { value: 'body', name: ' by body' },
         ]}
       />
 

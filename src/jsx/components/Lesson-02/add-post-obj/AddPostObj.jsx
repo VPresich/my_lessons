@@ -7,20 +7,20 @@ import styles from './AddPostObj.module.css';
 
 export const AddPostObj = () => {
   const [posts, setPosts] = useState(postsList);
-  const [post, setPost] = useState({ title: '', description: '' });
+  const [post, setPost] = useState({ title: '', body: '' });
 
   const handleAddPost = e => {
     e.preventDefault();
     console.log(post);
     setPosts([...posts, { ...post, id: posts.length + 1 }]);
-    setPost({ title: '', description: '' });
+    setPost({ title: '', body: '' });
   };
 
   const handleDeletePost = id => {
     setPosts(prevPosts => prevPosts.filter(post => post.id !== id));
   };
 
-  const isAddButtonDisabled = !post.title || !post.description;
+  const isAddButtonDisabled = !post.title || !post.body;
 
   return (
     <div className={styles.section}>
@@ -35,10 +35,10 @@ export const AddPostObj = () => {
         />
         <MyInput
           type="text"
-          placeholder="post description"
-          value={post.description}
+          placeholder="post body"
+          value={post.body}
           onChange={e => {
-            setPost({ ...post, description: e.target.value });
+            setPost({ ...post, body: e.target.value });
           }}
         />
         <MyButton

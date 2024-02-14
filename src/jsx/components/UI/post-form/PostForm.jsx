@@ -5,15 +5,15 @@ import { MyInput } from '../../UI/input/MyInput';
 // import styles from './PostForm.module.css';
 
 export const PostForm = ({ onSubmit }) => {
-  const [post, setPost] = useState({ title: '', description: '' });
+  const [post, setPost] = useState({ title: '', body: '' });
 
   const handleAddPost = e => {
     e.preventDefault();
     onSubmit({ ...post, id: nanoid() });
-    setPost({ title: '', description: '' });
+    setPost({ title: '', body: '' });
   };
 
-  const isAddButtonDisabled = !post.title || !post.description;
+  const isAddButtonDisabled = !post.title || !post.body;
 
   return (
     <form>
@@ -27,10 +27,10 @@ export const PostForm = ({ onSubmit }) => {
       />
       <MyInput
         type="text"
-        placeholder="post description"
-        value={post.description}
+        placeholder="post body"
+        value={post.body}
         onChange={e => {
-          setPost({ ...post, description: e.target.value });
+          setPost({ ...post, body: e.target.value });
         }}
       />
       <MyButton

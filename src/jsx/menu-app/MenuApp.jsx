@@ -6,6 +6,7 @@ import { Lesson03 } from '../components/Lesson-03/Lesson-03';
 import { Lesson04 } from '../components/Lesson-04/Lesson-04';
 import { Lesson05 } from '../components/Lesson-05/Lesson-05';
 import { Lesson06 } from '../components/Lesson-06/Lesson-06';
+import { Lesson07 } from '../components/Lesson-07/Lesson-07';
 
 import styles from './MenuApp.module.css';
 import clsx from 'clsx';
@@ -72,6 +73,14 @@ export const MenuApp = () => {
         >
           Lesson06
         </NavLink>
+
+        <NavLink
+          className={buildLinkClassName('/lesson07')}
+          to="/lesson07"
+          onClick={() => handleNavLinkClick('/lesson07')}
+        >
+          Lesson07
+        </NavLink>
       </nav>
       <Routes>
         <Route path="/" element={<Lesson01 />} />
@@ -80,6 +89,7 @@ export const MenuApp = () => {
         <Route path="/lesson04" element={<Lesson04 />} />
         <Route path="/lesson05" element={<Lesson05 />} />
         <Route path="/lesson06" element={<Lesson06 />} />
+        <Route path="/lesson07" element={<Lesson07 />} />
       </Routes>
     </div>
   );

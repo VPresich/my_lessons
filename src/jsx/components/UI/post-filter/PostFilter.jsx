@@ -19,7 +19,7 @@ export const PostFilter = ({ filter, onChangeFilter }) => {
         defaultValue={'sort by'}
         options={[
           { value: 'title', name: 'by title' },
-          { value: 'description', name: ' by description' },
+          { value: 'body', name: ' by body' },
         ]}
       />
     </div>

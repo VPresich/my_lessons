@@ -20,7 +20,7 @@ export const Lesson04 = () => {
 
   const filteredPosts = useMemo(() => {
     return sortedPosts.filter(post =>
-      post.description.toLowerCase().includes(filter.query.toLowerCase())
+      post.body.toLowerCase().includes(filter.query.toLowerCase())
     );
   }, [filter.query, sortedPosts]);
 

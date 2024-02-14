@@ -8,14 +8,14 @@ import styles from './AddPost.module.css';
 export const AddPost = () => {
   const [posts, setPosts] = useState(postsList);
   const [title, setTitle] = useState('');
-  const [description, setDescription] = useState('');
+  const [body, setBody] = useState('');
 
   const handleTitleChange = event => {
     setTitle(event.target.value);
   };
 
-  const handleDescriptionChange = event => {
-    setDescription(event.target.value);
+  const handleBodyChange = event => {
+    setBody(event.target.value);
   };
 
   const handleAddPost = e => {
@@ -23,18 +23,18 @@ export const AddPost = () => {
     const newPost = {
       id: posts.length + 1,
       title,
-      description,
+      body,
     };
     setPosts([...posts, newPost]);
     setTitle('');
-    setDescription('');
+    setBody('');
   };
 
   const handleDeletePost = id => {
     setPosts(prevPosts => prevPosts.filter(post => post.id !== id));
   };
 
-  const isAddButtonDisabled = !title || !description;
+  const isAddButtonDisabled = !title || !body;
 
   return (
     <div className={styles.section}>
@@ -47,9 +47,9 @@ export const AddPost = () => {
         />
         <MyInput
           type="text"
-          placeholder="post description"
-          value={description}
-          onChange={handleDescriptionChange}
+          placeholder="post body"
+          value={body}
+          onChange={handleBodyChange}
         />
         <MyButton
           type="button"
