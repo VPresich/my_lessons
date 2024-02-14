@@ -30,6 +30,10 @@ export const AddPost = () => {
     setDescription('');
   };
 
+  const handleDeletePost = id => {
+    setPosts(prevPosts => prevPosts.filter(post => post.id !== id));
+  };
+
   const isAddButtonDisabled = !title || !description;
 
   return (
@@ -55,7 +59,11 @@ export const AddPost = () => {
           Add post
         </MyButton>
       </form>
-      <PostList posts={posts} title={'List of Posts'} />
+      <PostList
+        onDeletePost={handleDeletePost}
+        posts={posts}
+        title={'List of Posts'}
+      />
     </div>
   );
 };

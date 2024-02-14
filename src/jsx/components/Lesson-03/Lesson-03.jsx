@@ -9,13 +9,21 @@ export const Lesson03 = () => {
   const [posts, setPosts] = useState(postsList);
 
   const handleAddPost = newPost => {
-    setPosts([...posts, newPost]);
+    setPosts(prevPosts => [...prevPosts, { newPost }]);
+  };
+
+  const handleDeletePost = id => {
+    setPosts(prevPosts => prevPosts.filter(post => post.id !== id));
   };
 
   return (
     <div className={styles.section}>
       <PostForm onSubmit={handleAddPost}></PostForm>
-      <PostList posts={posts} title={'List of Posts'} />
+      <PostList
+        posts={posts}
+        onDeletePost={handleDeletePost}
+        title={'List of Posts'}
+      />
     </div>
   );
 };
