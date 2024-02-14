@@ -47,16 +47,11 @@ export const Lesson05 = () => {
       <hr className={styles.line}></hr>
 
       <PostFilter filter={filter} onChangeFilter={setFilter} />
-
-      {handleDeletePost.length ? (
-        <PostList
-          posts={filteredPosts}
-          onDeletePost={handleDeletePost}
-          title={'List of Posts'}
-        />
-      ) : (
-        <h2 className={styles.message}>No posts</h2>
-      )}
+      <PostList
+        posts={filteredPosts}
+        onDeletePost={handleDeletePost}
+        title={'List of Posts'}
+      />
     </div>
   );
 };

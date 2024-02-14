@@ -1,14 +1,12 @@
-import { useState } from 'react';
-import { postsList } from '../Lesson-02/data';
+import { useState, useEffect } from 'react';
 import { PostList } from '../Lesson-02/post-list/PostList';
 import { PostForm } from '../UI/post-form/PostForm';
 import { PostFilter } from '../UI/post-filter/PostFilter';
 import { MyModal } from '../UI/modal/MyModal';
 import { MyButton } from '../UI/button/MyButton';
 import { usePosts } from '../../hooks/usePosts';
-
-import axios from 'axios';
-import { BASE_URL_POST } from './constants';
+import { Loader } from '../UI/loader/Loader';
+import PostService from '../../api/PostService';
 
 import styles from './Lesson-07.module.css';
 
@@ -16,6 +14,25 @@ export const Lesson07 = () => {
   const [posts, setPosts] = useState([]);
   const [filter, setFilter] = useState({ sort: '', query: '' });
   const [modal, setModal] = useState(false);
+  const [isPostLoading, setIsPostLoading] = useState(false);
+
+  useEffect(() => {
+    fetchPosts();
+  }, []); //for mount
+
+  async function fetchPosts() {
+    setIsPostLoading(true);
+
+    setTimeout(async () => {
+      const posts = await PostService.getAll();
+      setPosts(posts);
+      setIsPostLoading(false);
+    }, 2000);
+    //   const posts = await PostService.getAll();
+    //   setPosts(posts);
+    //   setIsPostLoading(false);
+    //
+  }
 
   const filteredPosts = usePosts(posts, filter.sort, filter.query);
 
@@ -27,14 +44,6 @@ export const Lesson07 = () => {
     setPosts([...posts, newPost]);
     setModal(false);
   };
-
-  async function fetchPosts() {
-    console.log('FETCH');
-    const response = await axios(BASE_URL_POST);
-    if (response) {
-      setPosts(response.data);
-    }
-  }
 
   return (
     <div className={styles.section}>
@@ -51,14 +60,15 @@ export const Lesson07 = () => {
       </MyModal>
       <hr className={styles.line}></hr>
       <PostFilter filter={filter} onChangeFilter={setFilter} />
-      {handleDeletePost.length ? (
+
+      {isPostLoading ? (
+        <Loader />
+      ) : (
         <PostList
           posts={filteredPosts}
           onDeletePost={handleDeletePost}
           title={'List of Posts'}
         />
-      ) : (
-        <h2 className={styles.message}>No posts</h2>
       )}
     </div>
   );

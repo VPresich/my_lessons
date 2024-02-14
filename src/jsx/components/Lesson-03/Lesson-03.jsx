@@ -57,16 +57,11 @@ export const Lesson03 = () => {
           { value: 'body', name: ' by body' },
         ]}
       />
-
-      {handleDeletePost.length ? (
-        <PostList
-          posts={filteredPosts}
-          onDeletePost={handleDeletePost}
-          title={'List of Posts'}
-        />
-      ) : (
-        <h2 className={styles.message}>No posts</h2>
-      )}
+      <PostList
+        posts={filteredPosts}
+        onDeletePost={handleDeletePost}
+        title={'List of Posts'}
+      />
     </div>
   );
 };
