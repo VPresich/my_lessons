@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { nanoid } from 'nanoid';
 import { MyButton } from '../../UI/button/MyButton';
 import { MyInput } from '../../UI/input/MyInput';
 // import styles from './PostForm.module.css';
@@ -8,7 +9,7 @@ export const PostForm = ({ onSubmit }) => {
 
   const handleAddPost = e => {
     e.preventDefault();
-    onSubmit({ ...post, id: Date.now() });
+    onSubmit({ ...post, id: nanoid() });
     setPost({ title: '', description: '' });
   };
 

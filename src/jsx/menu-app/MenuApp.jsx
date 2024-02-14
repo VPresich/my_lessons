@@ -16,8 +16,7 @@ export const MenuApp = () => {
 
   const buildLinkClassName = to => {
     const nameClass = clsx(styles.link, to === activeLink && styles.active);
-    console.log(nameClass);
-    return clsx(styles.link, to === activeLink && styles.active);
+    return nameClass;
   };
 
   return (
