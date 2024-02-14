@@ -1,4 +1,6 @@
 import { useState, useEffect } from 'react';
+import { useFetching } from '../../hooks/useFetching';
+
 import { PostList } from '../Lesson-02/post-list/PostList';
 import { PostForm } from '../UI/post-form/PostForm';
 import { PostFilter } from '../UI/post-filter/PostFilter';
@@ -14,25 +16,15 @@ export const Lesson07 = () => {
   const [posts, setPosts] = useState([]);
   const [filter, setFilter] = useState({ sort: '', query: '' });
   const [modal, setModal] = useState(false);
-  const [isPostLoading, setIsPostLoading] = useState(false);
+
+  const [fetchPosts, isPostLoading, postError] = useFetching(async () => {
+    const posts = await PostService.getAll();
+    setPosts(posts);
+  });
 
   useEffect(() => {
     fetchPosts();
-  }, []); //for mount
-
-  async function fetchPosts() {
-    setIsPostLoading(true);
-
-    setTimeout(async () => {
-      const posts = await PostService.getAll();
-      setPosts(posts);
-      setIsPostLoading(false);
-    }, 2000);
-    //   const posts = await PostService.getAll();
-    //   setPosts(posts);
-    //   setIsPostLoading(false);
-    //
-  }
+  }, []);
 
   const filteredPosts = usePosts(posts, filter.sort, filter.query);
 
@@ -61,6 +53,7 @@ export const Lesson07 = () => {
       <hr className={styles.line}></hr>
       <PostFilter filter={filter} onChangeFilter={setFilter} />
 
+      {postError && <h2>{postError}</h2>}
       {isPostLoading ? (
         <Loader />
       ) : (
