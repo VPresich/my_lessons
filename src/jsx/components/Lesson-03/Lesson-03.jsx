@@ -20,9 +20,11 @@ export const Lesson03 = () => {
     return posts;
   }, [selectedSort, posts]);
 
-  const filteredPosts = sortedPosts.filter(post =>
-    post.description.toLowerCase().includes(searchQuery.toLowerCase())
-  );
+  const filteredPosts = useMemo(() => {
+    return sortedPosts.filter(post =>
+      post.description.toLowerCase().includes(searchQuery.toLowerCase())
+    );
+  }, [searchQuery, sortedPosts]);
 
   const handleAddPost = newPost => {
     setPosts([...posts, newPost]);
@@ -56,7 +58,7 @@ export const Lesson03 = () => {
         ]}
       />
 
-      {posts.length ? (
+      {handleDeletePost.length ? (
         <PostList
           posts={filteredPosts}
           onDeletePost={handleDeletePost}
