@@ -24,6 +24,21 @@ export const NavBar = () => {
           to="/"
           onClick={() => handleNavLinkClick('/')}
         >
+          Home
+        </NavLink>
+
+        <NavLink
+          className={buildLinkClassName('/posts')}
+          to="/posts"
+          onClick={() => handleNavLinkClick('/posts')}
+        >
+          Posts
+        </NavLink>
+        {/* <NavLink
+          className={buildLinkClassName('/')}
+          to="/"
+          onClick={() => handleNavLinkClick('/')}
+        >
           Lesson01
         </NavLink>
 
@@ -81,7 +96,7 @@ export const NavBar = () => {
           onClick={() => handleNavLinkClick('/lesson08')}
         >
           Lesson08
-        </NavLink>
+        </NavLink> */}
       </nav>
     </div>
   );

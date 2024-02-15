@@ -1,16 +1,18 @@
 import { BrowserRouter } from 'react-router-dom';
-import { AppRouter } from './components/app-router/AppRouter';
-import { NavBar } from './components/UI/navbar/NavBar';
+import AppRouter from './AppRouter/AppRouter';
+import AppNavBar from './AppNavBar/AppNavBar';
 
 import styles from './App.module.css';
 
-export const App = () => {
+const App = () => {
   return (
     <BrowserRouter>
       <div className={styles.container}>
-        <NavBar />
+        <AppNavBar />
         <AppRouter />
       </div>
     </BrowserRouter>
   );
 };
+
+export default App;

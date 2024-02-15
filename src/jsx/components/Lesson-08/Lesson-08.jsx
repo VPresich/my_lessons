@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { usePageFetching } from '../../hooks/usePageFetching';
+import { useFetching } from '../../hooks/useFetching';
 
 import { PostList } from '../Lesson-02/post-list/PostList';
 import { PostForm } from '../UI/post-form/PostForm';
@@ -21,14 +21,14 @@ export const Lesson08 = () => {
   const [totalPages, setTotalPages] = useState(0);
   const [currPage, setCurrPage] = useState(1);
 
-  const [fetchPosts, isPostLoading, postError] = usePageFetching(async () => {
-    const responce = await PostService.getResponce(currPage);
+  const [fetchPosts, isPostLoading, postError] = useFetching(async page => {
+    const responce = await PostService.getResponce(page);
     setPosts(responce.data);
     setTotalPages(getPages(responce.headers['x-total-count']));
   });
 
   useEffect(() => {
-    fetchPosts();
+    fetchPosts(currPage);
   }, [currPage]);
 
   const filteredPosts = usePosts(posts, filter.sort, filter.query);
@@ -44,6 +44,7 @@ export const Lesson08 = () => {
 
   const handleChangePage = p => {
     setCurrPage(p);
+    // fetchPosts(p);
   };
 
   return (

@@ -11,10 +11,22 @@ export default class PostService {
   }
 
   static async getResponce(page) {
-    console.log('page-responce', page);
     const response = await axios.get(BASE_URL_POST, {
       params: { _limit: LIMIT, _page: page },
     });
+    if (response) {
+      return response;
+    }
+  }
+
+  static async getPostById(id) {
+    const response = await axios.get(BASE_URL_POST + `/${id}`);
+    if (response) {
+      return response;
+    }
+  }
+  static async getCommentsById(id) {
+    const response = await axios.get(BASE_URL_POST + `/${id}/comments`);
     if (response) {
       return response;
     }
