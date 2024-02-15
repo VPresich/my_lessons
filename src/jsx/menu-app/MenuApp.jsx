@@ -99,7 +99,7 @@ export const MenuApp = () => {
         <Route path="/lesson05" element={<Lesson05 />} />
         <Route path="/lesson06" element={<Lesson06 />} />
         <Route path="/lesson07" element={<Lesson07 />} />
-        <Route path="/lesson07" element={<Lesson08 />} />
+        <Route path="/lesson08" element={<Lesson08 />} />
       </Routes>
     </div>
   );

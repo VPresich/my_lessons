@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { useFetching } from '../../hooks/useFetching';
+import { usePageFetching } from '../../hooks/usePageFetching';
 
 import { PostList } from '../Lesson-02/post-list/PostList';
 import { PostForm } from '../UI/post-form/PostForm';
@@ -8,7 +8,9 @@ import { MyModal } from '../UI/modal/MyModal';
 import { MyButton } from '../UI/button/MyButton';
 import { usePosts } from '../../hooks/usePosts';
 import { Loader } from '../UI/loader/Loader';
+import { Pagination } from '../UI/pagination/Pagination';
 import PostService from '../../api/PostService';
+import { getPages } from '../../utils/pages';
 
 import styles from './Lesson-08.module.css';
 
@@ -16,15 +18,18 @@ export const Lesson08 = () => {
   const [posts, setPosts] = useState([]);
   const [filter, setFilter] = useState({ sort: '', query: '' });
   const [modal, setModal] = useState(false);
+  const [totalPages, setTotalPages] = useState(0);
+  const [currPage, setCurrPage] = useState(1);
 
-  const [fetchPosts, isPostLoading, postError] = useFetching(async () => {
-    const posts = await PostService.getAll();
-    setPosts(posts);
+  const [fetchPosts, isPostLoading, postError] = usePageFetching(async () => {
+    const responce = await PostService.getResponce(currPage);
+    setPosts(responce.data);
+    setTotalPages(getPages(responce.headers['x-total-count']));
   });
 
   useEffect(() => {
     fetchPosts();
-  }, []);
+  }, [currPage]);
 
   const filteredPosts = usePosts(posts, filter.sort, filter.query);
 
@@ -37,16 +42,13 @@ export const Lesson08 = () => {
     setModal(false);
   };
 
+  const handleChangePage = p => {
+    setCurrPage(p);
+  };
+
   return (
     <div className={styles.section}>
       <MyButton onClick={() => setModal(true)}>Open Modal</MyButton>
-      <MyButton
-        onClick={() => {
-          fetchPosts();
-        }}
-      >
-        Get posts
-      </MyButton>
       <MyModal visible={modal} setVisible={setModal}>
         <PostForm onSubmit={handleAddPost}></PostForm>
       </MyModal>
@@ -63,6 +65,11 @@ export const Lesson08 = () => {
           title={'List of Posts'}
         />
       )}
+      <Pagination
+        page={currPage}
+        totalPages={totalPages}
+        onChangePage={handleChangePage}
+      ></Pagination>
     </div>
   );
 };
