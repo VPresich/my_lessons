@@ -1,15 +1,4 @@
-// import { MenuApp } from './menu-app/MenuApp';
-// import styles from './App.module.css';
-
-// export const App = () => {
-//   return (
-//     <div className={styles.container}>
-//       <MenuApp />
-//     </div>
-//   );
-// };
-
-import { Routes, Route } from 'react-router-dom';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { NavBar } from './components/UI/navbar/NavBar';
 import { Lesson01 } from './components/Lesson-01/Lesson-01';
 import { Lesson02 } from './components/Lesson-02/Lesson-02';
@@ -24,18 +13,20 @@ import styles from './App.module.css';
 
 export const App = () => {
   return (
-    <div className={styles.container}>
-      <NavBar />
-      <Routes>
-        <Route path="/" element={<Lesson01 />} />
-        <Route path="/lesson02" element={<Lesson02 />} />
-        <Route path="/lesson03" element={<Lesson03 />} />
-        <Route path="/lesson04" element={<Lesson04 />} />
-        <Route path="/lesson05" element={<Lesson05 />} />
-        <Route path="/lesson06" element={<Lesson06 />} />
-        <Route path="/lesson07" element={<Lesson07 />} />
-        <Route path="/lesson08" element={<Lesson08 />} />
-      </Routes>
-    </div>
+    <BrowserRouter>
+      <div className={styles.container}>
+        <NavBar />
+        <Routes>
+          <Route path="/" element={<Lesson01 />} />
+          <Route path="/lesson02" element={<Lesson02 />} />
+          <Route path="/lesson03" element={<Lesson03 />} />
+          <Route path="/lesson04" element={<Lesson04 />} />
+          <Route path="/lesson05" element={<Lesson05 />} />
+          <Route path="/lesson06" element={<Lesson06 />} />
+          <Route path="/lesson07" element={<Lesson07 />} />
+          <Route path="/lesson08" element={<Lesson08 />} />
+        </Routes>
+      </div>
+    </BrowserRouter>
   );
 };
